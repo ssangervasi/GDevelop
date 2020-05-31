@@ -43,6 +43,7 @@ import ScenePropertiesDialog from '../SceneEditor/ScenePropertiesDialog';
 import SceneVariablesDialog from '../SceneEditor/SceneVariablesDialog';
 import { type UnsavedChanges } from '../MainFrame/UnsavedChangesContext';
 import { type MenuItemTemplate } from '../UI/Menu/Menu.flow';
+import DragHandle from '../UI/DragHandle';
 
 const LAYOUT_CLIPBOARD_KIND = 'Layout';
 const EXTERNAL_LAYOUT_CLIPBOARD_KIND = 'External layout';
@@ -171,77 +172,80 @@ class Item extends React.Component<ItemProps, {||}> {
     );
 
     return (
-      <ThemeConsumer>
-        {muiTheme => (
-          <ListItem
-            style={{
-              borderBottom: `1px solid ${muiTheme.listItem.separatorColor}`,
-              ...this.props.style,
-            }}
-            primaryText={label}
-            displayMenuButton
-            buildMenuTemplate={() => [
-              {
-                label: 'Edit',
-                click: () => this.props.onEdit(),
-              },
-              ...(this.props.buildExtraMenuTemplate
-                ? this.props.buildExtraMenuTemplate()
-                : []),
-              { type: 'separator' },
-              {
-                label: 'Rename',
-                click: () => this.props.onEditName(),
-              },
-              {
-                label: 'Delete',
-                click: () => this.props.onDelete(),
-              },
-              {
-                label: this.props.addLabel,
-                visible: !!this.props.onAdd,
-                click: () => this.props.onAdd(),
-              },
-              { type: 'separator' },
-              {
-                label: 'Copy',
-                click: () => this.props.onCopy(),
-              },
-              {
-                label: 'Cut',
-                click: () => this.props.onCut(),
-              },
-              {
-                label: 'Paste',
-                enabled: this.props.canPaste(),
-                click: () => this.props.onPaste(),
-              },
-              {
-                label: 'Duplicate',
-                click: () => this.props.onDuplicate(),
-              },
-              { type: 'separator' },
-              {
-                label: 'Move up',
-                enabled: this.props.canMoveUp,
-                click: () => this.props.onMoveUp(),
-              },
-              {
-                label: 'Move down',
-                enabled: this.props.canMoveDown,
-                click: () => this.props.onMoveDown(),
-              },
-            ]}
-            onClick={() => {
-              // It's essential to discard clicks when editing the name,
-              // to avoid weird opening of an editor (accompanied with a
-              // closing of the project manager) when clicking on the text
-              // field.
-              if (!this.props.editingName) this.props.onEdit();
-            }}
-          />
-        )}
-      </ThemeConsumer>
+      <>
+      <DragHandle />
+        <ThemeConsumer>
+          {muiTheme => (
+            <ListItem
+              style={{
+                borderBottom: `1px solid ${muiTheme.listItem.separatorColor}`,
+                ...this.props.style,
+              }}
+              primaryText={label}
+              displayMenuButton
+              buildMenuTemplate={() => [
+                {
+                  label: 'Edit',
+                  click: () => this.props.onEdit(),
+                },
+                ...(this.props.buildExtraMenuTemplate
+                  ? this.props.buildExtraMenuTemplate()
+                  : []),
+                { type: 'separator' },
+                {
+                  label: 'Rename',
+                  click: () => this.props.onEditName(),
+                },
+                {
+                  label: 'Delete',
+                  click: () => this.props.onDelete(),
+                },
+                {
+                  label: this.props.addLabel,
+                  visible: !!this.props.onAdd,
+                  click: () => this.props.onAdd(),
+                },
+                { type: 'separator' },
+                {
+                  label: 'Copy',
+                  click: () => this.props.onCopy(),
+                },
+                {
+                  label: 'Cut',
+                  click: () => this.props.onCut(),
+                },
+                {
+                  label: 'Paste',
+                  enabled: this.props.canPaste(),
+                  click: () => this.props.onPaste(),
+                },
+                {
+                  label: 'Duplicate',
+                  click: () => this.props.onDuplicate(),
+                },
+                { type: 'separator' },
+                {
+                  label: 'Move up',
+                  enabled: this.props.canMoveUp,
+                  click: () => this.props.onMoveUp(),
+                },
+                {
+                  label: 'Move down',
+                  enabled: this.props.canMoveDown,
+                  click: () => this.props.onMoveDown(),
+                },
+              ]}
+              onClick={() => {
+                // It's essential to discard clicks when editing the name,
+                // to avoid weird opening of an editor (accompanied with a
+                // closing of the project manager) when clicking on the text
+                // field.
+                if (!this.props.editingName) this.props.onEdit();
+              }}
+            />
+          )}
+        </ThemeConsumer>
+        </>
     );
   }
 }
