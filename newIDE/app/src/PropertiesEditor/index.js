@@ -13,6 +13,7 @@ import Edit from '@material-ui/icons/Edit';
 import ColorField from '../UI/ColorField';
 import { MarkdownText } from '../UI/MarkdownText';
 import { hexToRGBColor } from '../Utils/ColorTransformer';
+import { parseFloatSafe } from '../Utils/StringHelpers';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
 import {
@@ -269,7 +270,7 @@ export default class PropertiesEditor extends React.Component<Props, {||}> {
           )}
           onChange={newValue => {
             this.props.instances.forEach(i =>
-              setValue(i, parseFloat(newValue) || 0)
+              setValue(i, parseFloatSafe(newValue))
             );
             this._onInstancesModified(this.props.instances);
           }}
@@ -387,7 +388,7 @@ export default class PropertiesEditor extends React.Component<Props, {||}> {
           )}
           onChange={(event, index, newValue: string) => {
             this.props.instances.forEach(i =>
-              setValue(i, parseFloat(newValue) || 0)
+              setValue(i, parseFloatSafe(newValue))
             );
             this._onInstancesModified(this.props.instances);
           }}
