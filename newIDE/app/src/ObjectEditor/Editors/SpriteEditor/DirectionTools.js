@@ -9,6 +9,7 @@ import Brush from '@material-ui/icons/Brush';
 import PlayArrow from '@material-ui/icons/PlayArrow';
 import TextField from '../../../UI/TextField';
 import Dialog from '../../../UI/Dialog';
+import { parseFloatSafe } from '../../../Utils/StringHelpers';
 import AnimationPreview from './AnimationPreview';
 import ResourcesLoader from '../../../ResourcesLoader';
 import { type ResourceExternalEditor } from '../../../ResourcesList/ResourceExternalEditor.flow';
@@ -68,7 +69,7 @@ export default class DirectionTools extends Component<Props, State> {
   saveTimeBetweenFrames = () => {
     const { direction } = this.props;
 
-    const newTime = Math.max(parseFloat(this.state.timeBetweenFrames), 0.00001);
+    const newTime = Math.max(parseFloatSafe(this.state.timeBetweenFrames), 0.00001);
     const newTimeIsValid = !isNaN(newTime);
 
     if (newTimeIsValid) direction.setTimeBetweenFrames(newTime);
@@ -132,7 +133,7 @@ export default class DirectionTools extends Component<Props, State> {
         <TextField
           value={this.state.timeBetweenFrames}
           onChange={(e, text) =>
-            this.setState({ timeBetweenFrames: parseFloat(text) || 0 })
+            this.setState({ timeBetweenFrames: parseFloatSafe(text) })
           }
           onBlur={() => this.saveTimeBetweenFrames()}
           id="direction-time-between-frames"

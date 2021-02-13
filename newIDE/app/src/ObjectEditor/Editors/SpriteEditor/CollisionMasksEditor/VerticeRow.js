@@ -6,6 +6,7 @@ import TextField from '../../../../UI/TextField';
 import Warning from '@material-ui/icons/Warning';
 import styles from './styles';
 import ThemeConsumer from '../../../../UI/Theme/ThemeConsumer';
+import { parseFloatSafe } from '../../../../Utils/StringHelpers';
 
 const VerticeRow = ({
   hasWarning,
@@ -34,7 +35,7 @@ const VerticeRow = ({
             type="number"
             id="vertice-x"
             onChange={(e, value) =>
-              onChangeVerticeX(parseFloat(value || 0, 10))
+              onChangeVerticeX(parseFloatSafe(value))
             }
           />
         </TableRowColumn>
@@ -45,7 +46,7 @@ const VerticeRow = ({
             type="number"
             id="vertice-y"
             onChange={(e, value) =>
-              onChangeVerticeY(parseFloat(value || 0, 10))
+              onChangeVerticeY(parseFloatSafe(value))
             }
           />
         </TableRowColumn>

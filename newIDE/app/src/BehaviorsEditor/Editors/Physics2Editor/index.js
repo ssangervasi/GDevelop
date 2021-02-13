@@ -18,6 +18,7 @@ import Text from '../../../UI/Text';
 import DismissableAlertMessage from '../../../UI/DismissableAlertMessage';
 import { ResponsiveLineStackLayout } from '../../../UI/Layout';
 import EmptyMessage from '../../../UI/EmptyMessage';
+import { parseFloatSafe } from '../../../Utils/StringHelpers';
 
 type Props = BehaviorEditorProps;
 
@@ -372,16 +373,16 @@ export default class Physics2Editor extends React.Component<Props, State> {
                 }) => (
                   <ShapePreview
                     shape={properties.get('shape').getValue()}
-                    dimensionA={parseFloat(
+                    dimensionA={parseFloatSafe(
                       properties.get('shapeDimensionA').getValue()
                     )}
-                    dimensionB={parseFloat(
+                    dimensionB={parseFloatSafe(
                       properties.get('shapeDimensionB').getValue()
                     )}
-                    offsetX={parseFloat(
+                    offsetX={parseFloatSafe(
                       properties.get('shapeOffsetX').getValue()
                     )}
-                    offsetY={parseFloat(
+                    offsetY={parseFloatSafe(
                       properties.get('shapeOffsetY').getValue()
                     )}
                     polygonOrigin={properties.get('polygonOrigin').getValue()}
@@ -473,7 +474,7 @@ export default class Physics2Editor extends React.Component<Props, State> {
               behavior.updateProperty(
                 behaviorContent.getContent(),
                 'density',
-                parseFloat(newValue) > 0 ? newValue : '0'
+                parseFloatSafe(newValue) > 0 ? newValue : '0'
               );
               this.forceUpdate();
             }}
@@ -501,7 +502,7 @@ export default class Physics2Editor extends React.Component<Props, State> {
               behavior.updateProperty(
                 behaviorContent.getContent(),
                 'friction',
-                parseFloat(newValue) > 0 ? newValue : '0'
+                parseFloatSafe(newValue) > 0 ? newValue : '0'
               );
               this.forceUpdate();
             }}
@@ -514,7 +515,7 @@ export default class Physics2Editor extends React.Component<Props, State> {
               behavior.updateProperty(
                 behaviorContent.getContent(),
                 'restitution',
-                parseFloat(newValue) > 0 ? newValue : '0'
+                parseFloatSafe(newValue) > 0 ? newValue : '0'
               );
               this.forceUpdate();
             }}

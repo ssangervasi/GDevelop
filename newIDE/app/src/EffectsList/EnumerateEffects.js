@@ -1,5 +1,6 @@
 // @flow
 import { mapFor } from '../Utils/MapFor';
+import { parseFloatSafe } from '../Utils/StringHelpers';
 import { type Schema } from '../PropertiesEditor';
 import { type ResourceKind } from '../ResourcesList/ResourceSource.flow';
 import flatten from 'lodash/flatten';
@@ -137,7 +138,7 @@ export const setEffectDefaultParameters = (
     if (valueType === 'number') {
       effect.setDoubleParameter(
         parameterName,
-        parseFloat(property.getValue()) || 0
+        parseFloatSafe(property.getValue())
       );
     } else if (valueType === 'boolean') {
       effect.setBooleanParameter(parameterName, property.getValue() === 'true');

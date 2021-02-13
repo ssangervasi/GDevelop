@@ -8,6 +8,7 @@ import SelectField from '../../UI/SelectField';
 import SelectOption from '../../UI/SelectOption';
 import ColorField from '../../UI/ColorField';
 import SemiControlledTextField from '../../UI/SemiControlledTextField';
+import { parseFloatSafe } from '../../Utils/StringHelpers';
 import { type EditorProps } from './EditorProps.flow';
 import ResourceSelectorWithThumbnail from '../../ResourcesList/ResourceSelectorWithThumbnail';
 import { ResponsiveLineStackLayout, ColumnStackLayout } from '../../UI/Layout';
@@ -73,7 +74,7 @@ export default class ParticleEmitterEditor extends React.Component<
             type="number"
             value={particleEmitterObject.getRendererParam1()}
             onChange={value => {
-              particleEmitterObject.setRendererParam1(parseFloat(value));
+              particleEmitterObject.setRendererParam1(parseFloatSafe(value));
               this.forceUpdate();
             }}
           />
@@ -88,7 +89,7 @@ export default class ParticleEmitterEditor extends React.Component<
               type="number"
               value={particleEmitterObject.getRendererParam1()}
               onChange={value => {
-                particleEmitterObject.setRendererParam1(parseFloat(value));
+                particleEmitterObject.setRendererParam1(parseFloatSafe(value));
                 this.forceUpdate();
               }}
             />
@@ -99,7 +100,7 @@ export default class ParticleEmitterEditor extends React.Component<
               type="number"
               value={particleEmitterObject.getRendererParam2()}
               onChange={value => {
-                particleEmitterObject.setRendererParam2(parseFloat(value));
+                particleEmitterObject.setRendererParam2(parseFloatSafe(value));
                 this.forceUpdate();
               }}
             />
@@ -132,7 +133,7 @@ export default class ParticleEmitterEditor extends React.Component<
               value={particleEmitterObject.getRendererParam1()}
               onChange={value => {
                 particleEmitterObject.setRendererParam1(
-                  Math.max(0, parseFloat(value))
+                  Math.max(0, parseFloatSafe(value))
                 );
                 this.forceUpdate();
               }}
@@ -145,7 +146,7 @@ export default class ParticleEmitterEditor extends React.Component<
               value={particleEmitterObject.getRendererParam2()}
               onChange={value => {
                 particleEmitterObject.setRendererParam2(
-                  Math.max(0, parseFloat(value))
+                  Math.max(0, parseFloatSafe(value))
                 );
                 this.forceUpdate();
               }}
@@ -338,7 +339,7 @@ export default class ParticleEmitterEditor extends React.Component<
             type="number"
             value={particleEmitterObject.getParticleGravityX()}
             onChange={value => {
-              particleEmitterObject.setParticleGravityX(parseFloat(value));
+              particleEmitterObject.setParticleGravityX(parseFloatSafe(value));
               this.forceUpdate();
             }}
           />
@@ -349,7 +350,7 @@ export default class ParticleEmitterEditor extends React.Component<
             type="number"
             value={particleEmitterObject.getParticleGravityY()}
             onChange={value => {
-              particleEmitterObject.setParticleGravityY(parseFloat(value));
+              particleEmitterObject.setParticleGravityY(parseFloatSafe(value));
               this.forceUpdate();
             }}
           />
@@ -361,7 +362,7 @@ export default class ParticleEmitterEditor extends React.Component<
           type="number"
           value={particleEmitterObject.getFriction()}
           onChange={value => {
-            particleEmitterObject.setFriction(parseFloat(value));
+            particleEmitterObject.setFriction(parseFloatSafe(value));
             this.forceUpdate();
           }}
         />
@@ -375,7 +376,7 @@ export default class ParticleEmitterEditor extends React.Component<
             type="number"
             value={particleEmitterObject.getParticleLifeTimeMin()}
             onChange={value => {
-              particleEmitterObject.setParticleLifeTimeMin(parseFloat(value));
+              particleEmitterObject.setParticleLifeTimeMin(parseFloatSafe(value));
               this.forceUpdate();
             }}
           />
@@ -388,7 +389,7 @@ export default class ParticleEmitterEditor extends React.Component<
             type="number"
             value={particleEmitterObject.getParticleLifeTimeMax()}
             onChange={value => {
-              particleEmitterObject.setParticleLifeTimeMax(parseFloat(value));
+              particleEmitterObject.setParticleLifeTimeMax(parseFloatSafe(value));
               this.forceUpdate();
             }}
           />
@@ -401,7 +402,7 @@ export default class ParticleEmitterEditor extends React.Component<
             type="number"
             value={particleEmitterObject.getParticleSize1()}
             onChange={value => {
-              particleEmitterObject.setParticleSize1(parseFloat(value));
+              particleEmitterObject.setParticleSize1(parseFloatSafe(value));
               this.forceUpdate();
             }}
           />
@@ -412,7 +413,7 @@ export default class ParticleEmitterEditor extends React.Component<
             type="number"
             value={particleEmitterObject.getParticleSize2()}
             onChange={value => {
-              particleEmitterObject.setParticleSize2(parseFloat(value));
+              particleEmitterObject.setParticleSize2(parseFloatSafe(value));
               this.forceUpdate();
             }}
           />
@@ -427,7 +428,7 @@ export default class ParticleEmitterEditor extends React.Component<
             type="number"
             value={particleEmitterObject.getParticleAngle1()}
             onChange={value => {
-              particleEmitterObject.setParticleAngle1(parseFloat(value));
+              particleEmitterObject.setParticleAngle1(parseFloatSafe(value));
               this.forceUpdate();
             }}
           />
@@ -440,7 +441,7 @@ export default class ParticleEmitterEditor extends React.Component<
             type="number"
             value={particleEmitterObject.getParticleAngle2()}
             onChange={value => {
-              particleEmitterObject.setParticleAngle2(parseFloat(value));
+              particleEmitterObject.setParticleAngle2(parseFloatSafe(value));
               this.forceUpdate();
             }}
           />

@@ -6,6 +6,7 @@ import {
   type EditFunction,
   type CallFunction,
 } from '../GDJSInspectorDescriptions';
+import { parseFloatSafe } from '../Utils/StringHelpers';
 import mapValues from 'lodash/mapValues';
 
 type Props = {|
@@ -47,9 +48,9 @@ const handleEdit = (edit, { onCall, onEdit }: Props) => {
   path.push(edit.name);
 
   // Guess the type of the new value (number or string)
-  if (parseFloat(edit.new_value).toString() === edit.new_value) {
+  if (parseFloatSafe(edit.new_value).toString() === edit.new_value) {
     path.push('setNumber');
-    onCall(path, [parseFloat(edit.new_value)]);
+    onCall(path, [parseFloatSafe(edit.new_value)]);
   } else {
     path.push('setString');
     onCall(path, ['' + edit.new_value]);

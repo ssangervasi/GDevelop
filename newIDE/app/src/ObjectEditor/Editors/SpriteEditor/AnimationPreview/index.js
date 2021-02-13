@@ -11,6 +11,7 @@ import Timer from '@material-ui/icons/Timer';
 import TextField from '../../../../UI/TextField';
 import FlatButton from '../../../../UI/FlatButton';
 import Text from '../../../../UI/Text';
+import { parseFloatSafe } from '../../../../Utils/StringHelpers';
 
 type Props = {|
   spritesContainer: Object,
@@ -136,10 +137,10 @@ export default class AnimationPreview extends Component<Props, State> {
             margin="none"
             value={fps}
             onChange={(e, text) => {
-              const fps = parseFloat(text);
+              const fps = parseFloatSafe(text);
               if (fps > 0) {
                 this.setState({ fps });
-                onChangeTimeBetweenFrames(parseFloat((1 / fps).toFixed(4)));
+                onChangeTimeBetweenFrames(parseFloatSafe((1 / fps).toFixed(4)));
                 this.replay();
               }
             }}
@@ -156,7 +157,7 @@ export default class AnimationPreview extends Component<Props, State> {
             margin="none"
             value={timeBetweenFrames}
             onChange={(e, text) => {
-              const time = parseFloat(text);
+              const time = parseFloatSafe(text);
               if (time > 0) {
                 this.setState({ fps: Math.round(1 / time) });
                 onChangeTimeBetweenFrames(time);

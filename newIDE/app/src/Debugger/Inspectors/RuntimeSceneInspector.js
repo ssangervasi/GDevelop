@@ -14,6 +14,7 @@ import mapValues from 'lodash/mapValues';
 import RaisedButton from '../../UI/RaisedButton';
 import SemiControlledAutoComplete from '../../UI/SemiControlledAutoComplete';
 import Text from '../../UI/Text';
+import { parseFloatSafe } from '../../Utils/StringHelpers';
 
 type Props = {|
   runtimeScene: GameData,
@@ -53,18 +54,18 @@ const transform = runtimeScene => {
 
 const handleEdit = (edit, { onCall, onEdit }: Props) => {
   if (edit.namespace.length === 0 && edit.name === 'Time scale') {
-    onCall(['_timeManager', 'setTimeScale'], [parseFloat(edit.new_value)]);
+    onCall(['_timeManager', 'setTimeScale'], [parseFloatSafe(edit.new_value)]);
   } else if (edit.namespace.length >= 2) {
     if (edit.namespace[0] === 'Layers') {
       if (edit.name === 'Camera rotation (in deg)') {
         onCall(
           ['_layers', 'items', edit.namespace[1], 'setCameraRotation'],
-          [parseFloat(edit.new_value)]
+          [parseFloatSafe(edit.new_value)]
         );
       } else if (edit.name === 'Camera zoom') {
         onCall(
           ['_layers', 'items', edit.namespace[1], 'setCameraZoom'],
-          [parseFloat(edit.new_value)]
+          [parseFloatSafe(edit.new_value)]
         );
       } else if (edit.name === 'Layer is hidden') {
         onCall(
@@ -74,17 +75,17 @@ const handleEdit = (edit, { onCall, onEdit }: Props) => {
       } else if (edit.name === 'Camera X position') {
         onCall(
           ['_layers', 'items', edit.namespace[1], 'setCameraX'],
-          [parseFloat(edit.new_value)]
+          [parseFloatSafe(edit.new_value)]
         );
       } else if (edit.name === 'Camera Y position') {
         onCall(
           ['_layers', 'items', edit.namespace[1], 'setCameraY'],
-          [parseFloat(edit.new_value)]
+          [parseFloatSafe(edit.new_value)]
         );
       } else if (edit.name === 'Time scale') {
         onCall(
           ['_layers', 'items', edit.namespace[1], 'setTimeScale'],
-          [parseFloat(edit.new_value)]
+          [parseFloatSafe(edit.new_value)]
         );
       }
     }

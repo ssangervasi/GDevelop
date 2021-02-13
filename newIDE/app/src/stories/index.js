@@ -110,6 +110,7 @@ import {
   GDevelopAnalyticsApi,
   GDevelopGameApi,
 } from '../Utils/GDevelopServices/ApiConfigs.js';
+import { parseFloatSafe } from '../Utils/StringHelpers';
 import debuggerGameDataDump from '../fixtures/DebuggerGameDataDump.json';
 import profilerOutput from '../fixtures/ProfilerOutputsTestData.json';
 import SubscriptionDetails from '../Profile/SubscriptionDetails';
@@ -500,7 +501,7 @@ storiesOf('UI Building Blocks/SemiControlledTextField', module)
       <React.Fragment>
         <SemiControlledTextField
           value={value.toString()}
-          onChange={newValue => setValue(parseFloat(newValue))}
+          onChange={newValue => setValue(parseFloatSafe(newValue))}
         />
         <p>
           State value is {value} ({typeof value})
@@ -515,7 +516,7 @@ storiesOf('UI Building Blocks/SemiControlledTextField', module)
       <React.Fragment>
         <SemiControlledTextField
           value={value.toString()}
-          onChange={newValue => setValue(parseFloat(newValue))}
+          onChange={newValue => setValue(parseFloatSafe(newValue))}
           commitOnBlur
         />
         <p>
