@@ -10,6 +10,7 @@ import {
 } from '../GDJSInspectorDescriptions';
 import VariablesContainerInspector from './VariablesContainerInspector';
 import Text from '../../UI/Text';
+import { parseFloatSafe } from '../../Utils/StringHelpers';
 
 type Props = {|
   runtimeObject: GameData,
@@ -31,15 +32,15 @@ const transform = runtimeObject => {
 
 const handleEdit = (edit, { onCall, onEdit }: Props) => {
   if (edit.name === 'X position') {
-    onCall(['setX'], [parseFloat(edit.new_value)]);
+    onCall(['setX'], [parseFloatSafe(edit.new_value)]);
   } else if (edit.name === 'Y position') {
-    onCall(['setY'], [parseFloat(edit.new_value)]);
+    onCall(['setY'], [parseFloatSafe(edit.new_value)]);
   } else if (edit.name === 'Angle') {
-    onCall(['setAngle'], [parseFloat(edit.new_value)]);
+    onCall(['setAngle'], [parseFloatSafe(edit.new_value)]);
   } else if (edit.name === 'Layer') {
     onCall(['setLayer'], [edit.new_value]);
   } else if (edit.name === 'Z order') {
-    onCall(['setZOrder'], [parseFloat(edit.new_value)]);
+    onCall(['setZOrder'], [parseFloatSafe(edit.new_value)]);
   } else if (edit.name === 'Is hidden?') {
     onCall(['hide'], [!!edit.new_value]);
   } else return false;

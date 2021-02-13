@@ -1,5 +1,6 @@
 // @flow
 import { mapFor } from '../Utils/MapFor';
+import { parseFloatSafe } from '../Utils/StringHelpers';
 import { type Schema, type Instance } from '.';
 import { type ResourceKind } from '../ResourcesList/ResourceSource.flow';
 
@@ -47,12 +48,10 @@ export default (
         name,
         valueType,
         getValue: (instance: Instance): number => {
-          return (
-            parseFloat(
-              getProperties(instance)
-                .get(name)
-                .getValue()
-            ) || 0
+          return parseFloatSafe(
+            getProperties(instance)
+              .get(name)
+              .getValue()
           ); // Consider a missing value as 0 to avoid propagating NaN.
         },
         setValue: (instance: Instance, newValue: number) => {

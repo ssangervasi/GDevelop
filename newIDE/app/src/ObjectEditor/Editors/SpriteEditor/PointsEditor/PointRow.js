@@ -8,6 +8,7 @@ import TextField from '../../../../UI/TextField';
 import styles from './styles';
 import ThemeConsumer from '../../../../UI/Theme/ThemeConsumer';
 import Text from '../../../../UI/Text';
+import { parseFloatSafe } from '../../../../Utils/StringHelpers';
 
 const PointRow = ({
   pointName,
@@ -49,9 +50,7 @@ const PointRow = ({
               value={pointX}
               type="number"
               id="point-x"
-              onChange={(e, value) =>
-                onChangePointX(parseFloat(value || 0, 10))
-              }
+              onChange={(e, value) => onChangePointX(parseFloatSafe(value))}
             />
           ) : (
             <Text noMargin>
@@ -66,9 +65,7 @@ const PointRow = ({
               value={pointY}
               type="number"
               id="point-y"
-              onChange={(e, value) =>
-                onChangePointY(parseFloat(value || 0, 10))
-              }
+              onChange={(e, value) => onChangePointY(parseFloatSafe(value))}
             />
           ) : (
             <Text noMargin>

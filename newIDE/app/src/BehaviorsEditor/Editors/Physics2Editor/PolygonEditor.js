@@ -12,6 +12,7 @@ import SemiControlledTextField from '../../../UI/SemiControlledTextField';
 import Warning from '@material-ui/icons/Warning';
 import IconButton from '../../../UI/IconButton';
 import ThemeConsumer from '../../../UI/Theme/ThemeConsumer';
+import { parseFloatSafe } from '../../../Utils/StringHelpers';
 import AddCircle from '@material-ui/icons/AddCircle';
 import Delete from '@material-ui/icons/Delete';
 
@@ -119,7 +120,7 @@ export default class PolygonEditor extends React.Component<Props> {
                         fullWidth
                         value={value.x.toString(10)}
                         onChange={newValue =>
-                          onChangeVertexX(parseFloat(newValue) || 0, index)
+                          onChangeVertexX(parseFloatSafe(newValue), index)
                         }
                         type="number"
                       />
@@ -130,7 +131,7 @@ export default class PolygonEditor extends React.Component<Props> {
                         fullWidth
                         value={value.y.toString(10)}
                         onChange={newValue =>
-                          onChangeVertexY(parseFloat(newValue) || 0, index)
+                          onChangeVertexY(parseFloatSafe(newValue), index)
                         }
                         type="number"
                       />

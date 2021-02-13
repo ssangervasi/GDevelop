@@ -2,6 +2,7 @@
 import { type I18n as I18nType } from '@lingui/core';
 import { t } from '@lingui/macro';
 import { mapVector } from '../Utils/MapFor';
+import { parseFloatSafe } from '../Utils/StringHelpers';
 import {
   enumerateNamedPropertyDescriptorsList,
   toGdPropertyDescriptor,
@@ -83,7 +84,7 @@ export const declareBehaviorMetadata = (
     if (propertyType === 'String' || propertyType === 'Choice') {
       element.setStringValue(newValue);
     } else if (propertyType === 'Number') {
-      element.setDoubleValue(parseFloat(newValue));
+      element.setDoubleValue(parseFloatSafe(newValue));
     } else if (propertyType === 'Boolean') {
       element.setBoolValue(newValue === '1');
     }
@@ -137,7 +138,7 @@ export const declareBehaviorMetadata = (
       if (propertyType === 'String' || propertyType === 'Choice') {
         element.setStringValue(enumeratedProperty.value);
       } else if (propertyType === 'Number') {
-        element.setDoubleValue(parseFloat(enumeratedProperty.value) || 0);
+        element.setDoubleValue(parseFloatSafe(enumeratedProperty.value));
       } else if (propertyType === 'Boolean') {
         element.setBoolValue(enumeratedProperty.value === 'true');
       }
